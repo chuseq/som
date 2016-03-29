@@ -69,6 +69,5 @@ int main () {
       printf("%f ",cij[i][j]);
     } /*for j*/
   } /*for i*/
-
-  return 1;
+  exit(0);
 }
