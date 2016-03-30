@@ -55,7 +55,7 @@ SOMFILE is the output file of the `som` program.
 
 Relevant variables inside the script:
 ```
-NUMCLUST: defines the number of clusters
+NUMCLUST: defines the number of clusters to show in the plot
 PAUSE: if 0, save the plot directly to a PNG file; if 1, keep the gnuplot window open
 ```
 
