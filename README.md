@@ -1,5 +1,5 @@
 # som
-Basic Self Organizing Map implementation for genome analysis.
+Basic Self Organizing Map (SOM) implementation for genome analysis.
 
 This repository contains code files for the undergraduate thesis project titled "Self Organizing Map for genome analysis". This project aims to generate a clustering of bacterial genomes based on a structural representation of its DNA sequence.
 
@@ -27,7 +27,7 @@ GENOMES: the subdirectory with the fasta sequences
 MATRIX: the name of the output file
 ```
 ## som.c
-Contains a basic general implementation of Kohonen's SOM algorithm. It can be used in any dataset. 
+Contains a basic general implementation of Teuvo Kohonen's SOM algorithm. It can be used in any dataset. 
 
 Usage:
 ```
@@ -72,6 +72,11 @@ Usage:
 $ bash sompak.sh
 ```
 Relevant variables inside the script: DATADIR, DATAFILE, RESULTSDIR, LOGFILE, PATH
+
+# Other SOM implementations
+
+- [SOM_PAK](http://www.cis.hut.fi/research/som-research/nnrc-programs.shtml) package, from the very author of the SOM algorithm.
+- R packages: [som](https://cran.r-project.org/web/packages/som), [kohonen](https://cran.r-project.org/web/packages/kohonen), [SOMbrero](https://cran.r-project.org/web/packages/SOMbrero).
 
 # Author
 Alfredo José Hernández Alvarez - chuseq@gmail.com
