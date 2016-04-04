@@ -15,7 +15,7 @@ $ zcat INPUT.fna.gz | ./vector > OUTPUT
 ```
 
 ## matrix.sh
-Bash script to generate a matrix with the vector representations of a set of genomic sequences. It scans the subdirectory with the compressed fasta sequences, applies the program  `vector` on each sequence, and stores each vector as a line in an output file. If there are N fasta files, the resulting matrix has dimension Nx16. This script is intended to run only once, to generate de input data file for the `som` program.
+Bash script to generate a matrix with the vector representations of a set of genomic sequences. It scans the subdirectory with the compressed fasta sequences, applies the program  `vector` on each sequence, and stores each vector as a line in an output file. If there are N fasta files, the resulting matrix has dimension Nx16. This script is intended to run only once, to generate the input data file for the `som` program.
 
 Usage:
 ```
