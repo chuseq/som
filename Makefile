@@ -1,4 +1,6 @@
-# Makefile 
+#
+# Makefile for vector.c and som.c
+# 
 CC=gcc
 
 all: vector som
