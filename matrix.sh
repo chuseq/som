@@ -18,8 +18,8 @@ MATRIX=../data/matrix2015lbl2
 # directorio que contiene los archivos .fna.gz
 GENOMES=../genomes/Bacteria
 
-# primero obtener el listado, sacar la primera linea de cada archivo, ordenarlas por nombre de bacteria, mandarlas a archivo .srt
-#FILES=$(find ../genomes/Bacteria -name "*.fna.gz" -print)
+# primero obtener el listado, sacar la primera linea de cada archivo, 
+# ordenarlas por nombre de bacteria, mandarlas a archivo .srt
 echo -n "Ordenando entrada..."
 for f in ${GENOMES}/*.fna.gz 
 do
@@ -27,7 +27,8 @@ do
 done | sort -t '|' -k 5 > ${MATRIX}.srt
 echo "Hecho."
 
-# luego leer del archivo .srt, obtener el nombre del archivo de la secuencia, calcularle el vector, mandarlo a matrix con su id numerico
+# luego leer del archivo .srt, obtener el nombre del archivo de la secuencia, 
+# calcularle el vector, mandarlo a matrix con su etiqueta
 echo -n "Generando matriz"
 echo 16 > ${MATRIX}.dat
 echo > ${MATRIX}.idx

@@ -17,7 +17,8 @@ then
 fi
 
 # SOMFILE es el archivo de salida de som
-# es un archivo con columnas separadas por espacio, la 4a columna es la etiqueta
+# es un archivo con columnas separadas por espacio, la 4a columna 
+# es la etiqueta
 SOMFILE=$1
 if [ ! -f ${SOMFILE} ]
 then
@@ -42,7 +43,6 @@ mkdir -p ${SOMGPDIR}
 
 # ordenar por etiqueta y acumulado de etiquetas, mandar a archivo temporal
 #cat $SOMFILE | awk '{a[$4]++ } END {for (i in a) print i " " a[i]}'| sort -n -k2 -r  > ${TMPFILE}
-
 # luego leer las etiquetas de tempo
 #for l in $(cat ${TMPFILE} |cut -d' ' -f1| head -${NUMCLUST}); do grep $l ${SOMFILE} > ${SOMGPDIR}/${FILENAME}-$l; done
 # se hace lo anterior tomando el tamano del archivo, se asume que los archivos mas grandes tienen mas puntos
@@ -70,3 +70,4 @@ then
 else
   gnuplot -p ${SOMGPFILE}
 fi
+
