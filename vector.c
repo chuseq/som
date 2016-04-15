@@ -12,6 +12,7 @@
  ********************************************************************/
 
 #include <stdio.h>
+#include <stdlib.h>
 
 int base(int b) {
   switch (b) {
