@@ -23,7 +23,7 @@ GENOMES=../genomes/Bacteria
 echo -n "Ordenando entrada..."
 for f in ${GENOMES}/*.fna.gz 
 do
-    zcat $f |grep '>'|grep "complete genome"|grep -v chromosome | grep -v plasmid |head -1
+    zcat $f |grep "^>"|grep "complete genome"|grep -v chromosome | grep -v plasmid |head -1
 done | sort -t '|' -k 5 > ${MATRIX}.srt
 echo "Hecho."
 
