@@ -3,7 +3,8 @@
  * Descripcion:
  *  Programa en C que recibe de la entrada estandar una secuencia 
  *  genomica en formato FASTA y manda a la salida estandar su vector 
- *  de probabilidades cij de 16 componentes
+ *  de probabilidades cij de 16 componentes. Solo se toman en cuenta 
+ *  los simbolos A, C, G, T
  * Uso:
  *    cat entrada.fa | ./vector > salida.dat
  * Autor: Alfredo Jose Hernandez Alvarez

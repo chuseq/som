@@ -34,6 +34,7 @@
 #include<math.h>
 
 int main(int argc, char *argv[]) {
+  /* valores iniciales de parametros */
   int 
     epochs=-1,
     nrows=-1,

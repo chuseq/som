@@ -1,6 +1,7 @@
 #
 # Makefile for vector.c and som.c
 # 
+# Autor: Alfredo Jose Hernandez Alvarez
 CC=gcc
 
 all: vector som
