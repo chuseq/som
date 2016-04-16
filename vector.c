@@ -13,6 +13,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int base(int b) {
   switch (b) {
@@ -43,33 +44,39 @@ int main () {
        fij para las frecuencias de los dinucleotidos */
   double fi[4], fij[4][4], cij[4][4];
   enum { A, C, G, T };
-  /* saltamos la primera linea del archivo*/
-  while (getchar()!='\n');
+  char * line = NULL; size_t len = 0;
+  while ( getline(&line, &len, stdin) != -1 ) { 
+  /* if line == "^>" y not plasmid y not chromosome y not replicon y "complete genome" */
+    if ( strstr(line,">")==line && strstr(line,"plasmid")==NULL && strstr(line,"chromosome")==NULL && strstr(line,"replicon")==NULL && strstr(line,"complete genome")!=NULL) { 
   /* leemos la secuencia
      OJO: solamente tomamos en cuenta las letras o bases A C G T
    */
-  while ((c=getchar())!=EOF) {
-    if (c=='A' || c=='C' || c=='G' || c=='T') {
-      n++;
-      /* incrementamos el contador de cada base */
-      ni[base(c)]++;
-      if (p!=0) { 
-	/* incrementamos el contador de los dinucleotidos que se van encontrando */
-	nij[base(p)][base(c)]++;
-      } /*if*/
-      p=c;
-    } /*if c*/
-  } /*while getchar*/
-  for(i=0; i<4; i++) {
-    fi[i]=(double)ni[i]/n;
-  }
-  /* se calcula cij y  mandamos a pantalla */
-  for(i=0; i<4; i++) {
-    for(j=0; j<4; j++) {
-      fij[i][j] = (double)nij[i][j] / (n-1);
-      cij[i][j] = fij[i][j] - fi[i]*fi[j];
-      printf("%f ",cij[i][j]);
-    } /*for j*/
-  } /*for i*/
+      while ((c=getchar())!=EOF && c!='>' ) { 
+        if (c=='A' || c=='C' || c=='G' || c=='T') {
+          n++;
+          /* incrementamos el contador de cada base */
+          ni[base(c)]++;
+          if (p!=0) { 
+            /* incrementamos el contador de los dinucleotidos que se van encontrando */
+            nij[base(p)][base(c)]++;
+          } /*if*/
+          p=c;
+        } /*if c*/ 
+      } /*while getchar*/
+      if (c=='>') ungetc(c,stdin);
+      for(i=0; i<4; i++) {
+        fi[i]=(double)ni[i]/n;
+      }
+      /* se calcula cij y  mandamos a pantalla */
+      for(i=0; i<4; i++) {
+        for(j=0; j<4; j++) {
+          fij[i][j] = (double)nij[i][j] / (n-1);
+          cij[i][j] = fij[i][j] - fi[i]*fi[j];
+          printf("%f ",cij[i][j]);
+        } /*for j*/
+      } /*for i*/
+    } /* if line */
+  } /* while getline */
+  free(line);
   exit(0);
 }
