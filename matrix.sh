@@ -23,7 +23,7 @@ GENOMES=../genomes/Bacteria
 echo -n "Generando lista..."
 for f in ${GENOMES}/*.fna.gz 
 do
-    bn=$(zcat $f |grep "^>"|grep -v chromosome | grep -v plasmid |grep -v replicon|grep "complete genome"|head -1|cut -d' ' -f 2-)
+    bn=$(zcat $f |grep "^>"|grep -v chromosome | grep -v plasmid |grep -v replicon|grep "complete genome"|head -1|cut -d' ' -f 2-|sed 's/^ //g;s/\[//g;s/\]//g;s/\*//g')
     if [ -n "$bn" ] 
     then
       echo "$f|$bn"
@@ -41,7 +41,7 @@ i=1
 while read fl
 do
     f=$(echo $fl | cut -d'|' -f1)
-    bn=$(echo $fl | cut -d'|' -f 2-|sed 's/^ //g;s/\[//g;s/\]//g')
+    bn=$(echo $fl | cut -d'|' -f 2-)
     l1=$(echo "$bn"| cut -c 1-4); l2=$(echo "$bn"|cut -d' ' -f 2|cut -c 1-2); lbl=$l1$l2;
     zcat $f | ./vector >> ${MATRIX}.dat
     # usar $i para numerico, $lbl para etiqueta
