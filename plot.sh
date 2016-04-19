@@ -68,7 +68,7 @@ echo -n "splot " >> ${SOMGPFILE}
 for f in $(ls -l ${SOMGPDIR}/${FILENAME}-* |sort -k 5 -n -r | head -${NUMCLUST} | awk '{print $9}')
 do
   c=${GPCOLORS[$i]}
-  if [ $LABELS ==1 ]
+  if [ $LABELS == 1 ]
   then
     echo \'$f\' using 2:3:1 with labels point offset 1 tc rgb \'$c\', \\
   else
@@ -82,6 +82,6 @@ if [ $PAUSE == 0 ]
 then
   gnuplot ${SOMGPFILE}
 else
-  gnuplot -p ${SOMGPFILE}
+  gnuplot -persist ${SOMGPFILE}
 fi
 
