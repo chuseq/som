@@ -67,13 +67,18 @@ fi
 echo -n "splot " >> ${SOMGPFILE}
 for f in $(ls -l ${SOMGPDIR}/${FILENAME}-* |sort -k 5 -n -r | head -${NUMCLUST} | awk '{print $9}')
 do
+  if [ $i != 0 ]
+  then
+    echo ", \\"
+  fi
+  echo -n "'$f' using 2:3:1 "
   c=${GPCOLORS[$i]}
   if [ $LABELS == 1 ]
   then
-    echo \'$f\' using 2:3:1 with labels point offset 1 tc rgb \'$c\', \\
+    echo -n "with labels point offset 1 tc rgb '$c'"
   else
     l=$(echo $f |rev|cut -d'-' -f1 |rev)
-    echo \'$f\' using 2:3:1 with point pt 3 ps 2 lc rgb \'$c\' title \'$l\', \\
+    echo -n "with point pt 3 ps 2 lc rgb '$c' title '$l'"
   fi
   i=$(($i+1)) 
 done >> ${SOMGPFILE}
