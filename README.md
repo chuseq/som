@@ -56,16 +56,21 @@ SOMFILE is the output file of the `som` program.
 Relevant variables inside the script:
 ```
 NUMCLUST: defines the number of clusters to show in the plot
-PAUSE: if 0, save the plot directly to a PNG file; if 1, keep the gnuplot window open
+PAUSE: if 0, save the plot directly to a PNG file; if 1, keep the gnuplot window open; default 1
+LABELS: if 0, plot only the points and a legend separately; if 1, plot the labels in each point; default 1
 ```
 
 Sample plots:
 
 ![genomes](https://github.com/chuseq/som/blob/master/genomes.png "Sample genomes clustering")
+![genomes2](https://github.com/chuseq/som/blob/master/genomes2.png "Sample genomes clustering without labels")
 ![iris](https://github.com/chuseq/som/blob/master/iris.png "Sample IRIS data set clustering")
 
+## wget.sh
+Bash script to download the Bacteria FASTA files from the NCBI FTP site. Warning: aprox 5GB od hard disk space needed
+
 ## sompak.sh
-Bash script to run the programs in the [SOM_PAK](http://www.cis.hut.fi/research/som-research/nnrc-programs.shtml) package.
+Bash script to run the programs in the [SOM_PAK](http://www.cis.hut.fi/research/som-research/nnrc-programs.shtml) package, with the data file generated with the `matrix.sh` script.
 
 Usage:
 ```
