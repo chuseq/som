@@ -32,6 +32,9 @@ GPCOLORS=(red green blue orangered yellowgreen cyan brown black magenta coral da
 # si PAUSE=0 entonces se genera automaticamente un png con la grafica
 # si PAUSE=1, se abre la ventana de gnuplot (requiere ambiente X)
 PAUSE=1
+# si LABELS=1 se grafican los puntos junto con sus etiquetas
+# si LABELS=0 se grafican los puntos solos y al lado se muestra la leyenda de las etiquetas
+LABELS=1
 # nombres de archivos
 FILENAME=$(basename $SOMFILE)
 SOMGPDIR=${FILENAME}_gp
@@ -55,12 +58,23 @@ then
   echo set terminal png >> ${SOMGPFILE}
   echo set output \'${SOMGPOUT}\' >> ${SOMGPFILE}
 fi
-echo unset key >> ${SOMGPFILE}
+if [ $LABELS == 1 ]
+then
+  echo unset key >> ${SOMGPFILE}
+else
+  echo set key default >> ${SOMGPFILE}
+fi
 echo -n "splot " >> ${SOMGPFILE}
 for f in $(ls -l ${SOMGPDIR}/${FILENAME}-* |sort -k 5 -n -r | head -${NUMCLUST} | awk '{print $9}')
 do
   c=${GPCOLORS[$i]}
-  echo \'$f\' with labels point offset 1 tc rgb \'$c\', \\
+  if [ $LABELS ==1 ]
+  then
+    echo \'$f\' using 2:3:1 with labels point offset 1 tc rgb \'$c\', \\
+  else
+    l=$(echo $f |rev|cut -d'-' -f1 |rev)
+    echo \'$f\' using 2:3:1 with point pt 3 ps 2 lc rgb \'$c\' title \'$l\', \\
+  fi
   i=$(($i+1)) 
 done >> ${SOMGPFILE}
 
