@@ -67,7 +67,7 @@ Sample plots:
 ![iris](https://github.com/chuseq/som/blob/master/iris.png "Sample IRIS data set clustering")
 
 ## wget.sh
-Bash script to download the Bacteria FASTA files from the NCBI FTP site. Warning: aprox 5GB od hard disk space needed.
+Bash script to download the Bacteria FASTA files from the NCBI FTP site. Warning: only downloads "Complete Genome" files, aprox 5GB od hard disk space needed as of April 2016.
 
 ## sompak.sh
 Bash script to run the programs in the [SOM_PAK](http://www.cis.hut.fi/research/som-research/nnrc-programs.shtml) package, with the data file generated with the `matrix.sh` script.
