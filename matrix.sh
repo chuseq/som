@@ -14,7 +14,7 @@
 ######################################################################
 
 # archivo de salida
-MATRIX=../data/matrix20160415ok
+MATRIX=../data/matrix20160415
 # directorio que contiene los archivos .fna.gz
 GENOMES=../genomes/Bacteria
 
