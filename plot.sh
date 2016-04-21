@@ -34,10 +34,17 @@ GPCOLORS=(red green blue orangered yellowgreen cyan brown black magenta coral da
 PAUSE=1
 # si LABELS=1 se grafican los puntos junto con sus etiquetas
 # si LABELS=0 se grafican los puntos solos y al lado se muestra la leyenda de las etiquetas
-LABELS=1
+LABELS=0
+# dimension plot 2d o splot 3d
+DIM=2
+if [ $DIM == 2 ]
+then
+  LABELS=0
+fi
 # nombres de archivos
 FILENAME=$(basename $SOMFILE)
-SOMGPDIR=${FILENAME}_gp
+DIRNAME=$(dirname $SOMFILE)
+SOMGPDIR=${DIRNAME}/${FILENAME}_gp
 #TMPFILE=${SOMGPDIR}/${FILENAME}.tot
 SOMGPFILE=${SOMGPDIR}/${FILENAME}.gp
 SOMGPOUT=${SOMGPDIR}/${FILENAME}.png
@@ -64,14 +71,24 @@ then
 else
   echo set key default >> ${SOMGPFILE}
 fi
-echo -n "splot " >> ${SOMGPFILE}
+if [ $DIM == 2 ]
+then
+  echo -n "plot " >> ${SOMGPFILE}
+else 
+  echo -n "splot " >> ${SOMGPFILE}
+fi
 for f in $(ls -l ${SOMGPDIR}/${FILENAME}-* |sort -k 5 -n -r | head -${NUMCLUST} | awk '{print $9}')
 do
   if [ $i != 0 ]
   then
     echo ", \\"
   fi
-  echo -n "'$f' using 2:3:1 "
+  if [ $DIM == 2 ]
+  then
+    echo -n "'$f' using 2:3 "
+  else
+    echo -n "'$f' using 2:3:1 "
+  fi
   c=${GPCOLORS[$i]}
   if [ $LABELS == 1 ]
   then
